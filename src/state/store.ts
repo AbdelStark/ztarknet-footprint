@@ -23,6 +23,9 @@ export interface SimulationStore extends SimulationState {
 
 const STATE_PARAM = 's';
 
+const globalCrypto =
+  typeof globalThis !== 'undefined' ? (globalThis.crypto as Crypto | undefined) : undefined;
+
 const DEFAULT_GLOBAL: GlobalSettings = {
   blockSizeBytes: 2 * 1024 * 1024,
   blockTimeSeconds: 75,
@@ -41,9 +44,6 @@ const DEFAULT_STATE: SimulationState = {
   global: DEFAULT_GLOBAL,
   l2s: [DEFAULT_L2],
 };
-
-const globalCrypto =
-  typeof globalThis !== 'undefined' ? (globalThis.crypto as Crypto | undefined) : undefined;
 
 const PRESETS: PresetDefinition[] = [
   {
