@@ -42,6 +42,9 @@ const DEFAULT_STATE: SimulationState = {
   l2s: [DEFAULT_L2],
 };
 
+const globalCrypto =
+  typeof globalThis !== 'undefined' ? (globalThis.crypto as Crypto | undefined) : undefined;
+
 const PRESETS: PresetDefinition[] = [
   {
     key: 'base',
@@ -139,9 +142,6 @@ const PRESET_MAP: Record<PresetKey, PresetDefinition> = PRESETS.reduce(
   },
   {} as Record<PresetKey, PresetDefinition>,
 );
-
-const globalCrypto =
-  typeof globalThis !== 'undefined' ? (globalThis.crypto as Crypto | undefined) : undefined;
 
 function makeInitialState(): SimulationState {
   const fromUrl = loadStateFromUrl();
