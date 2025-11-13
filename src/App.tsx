@@ -9,6 +9,7 @@ import { ResultsPanel } from './components/ResultsPanel';
 import { ShareControls } from './components/ShareControls';
 import { PresetsBar } from './components/PresetsBar';
 import { MetricsStrip } from './components/MetricsStrip';
+import { formatBytes, formatPercent } from './calc/units';
 
 function App() {
   const global = useSimulationStore((state) => state.global);
@@ -31,6 +32,27 @@ function App() {
     () => buildMarkdownSnippet(stateShape, results),
     [stateShape, results],
   );
+
+  useEffect(() => {
+    const total = results.totals;
+    const title = `Ztarknet Footprint · Avg ${formatPercent(
+      total.avgSharePct,
+      2,
+    )} load`;
+    if (typeof document !== 'undefined') {
+      document.title = title;
+      const summary = `Aggregate demand is ${formatBytes(
+        total.avgBytesPerBlock,
+        global.units,
+        3,
+      )} per block (${formatPercent(total.avgSharePct)}), peaking at ${formatPercent(
+        total.peakSharePct,
+      )}.`;
+      updateMeta('description', summary);
+      updateMetaProperty('og:description', summary);
+      updateMetaProperty('twitter:description', summary);
+    }
+  }, [results, global.units]);
 
   const [toast, setToast] = useState<string | null>(null);
   useEffect(() => {
@@ -145,3 +167,26 @@ function App() {
 }
 
 export default App;
+
+function updateMeta(name: string, content: string) {
+  if (typeof document === 'undefined') return;
+  const tag =
+    document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`) ??
+    createMetaTag('name', name);
+  tag.content = content;
+}
+
+function updateMetaProperty(property: string, content: string) {
+  if (typeof document === 'undefined') return;
+  const tag =
+    document.querySelector<HTMLMetaElement>(`meta[property="${property}"]`) ??
+    createMetaTag('property', property);
+  tag.content = content;
+}
+
+function createMetaTag(key: 'name' | 'property', value: string) {
+  const tag = document.createElement('meta');
+  tag.setAttribute(key, value);
+  document.head.appendChild(tag);
+  return tag;
+}

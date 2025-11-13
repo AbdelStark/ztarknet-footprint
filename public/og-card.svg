@@ -1,0 +1,29 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#00FF88"/>
+      <stop offset="100%" stop-color="#FFD166"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="#0B0E0C"/>
+  <rect x="60" y="60" width="1080" height="510" rx="48" fill="#121514" stroke="rgba(255,255,255,0.08)"/>
+  <text x="100" y="170" fill="#E6F5EC" font-family="IBM Plex Mono, monospace" font-size="56" letter-spacing="0.3em">ZTARKNET</text>
+  <text x="100" y="240" fill="#A5B9AE" font-family="IBM Plex Sans, sans-serif" font-size="30">Footprint Simulator</text>
+  <text x="100" y="320" fill="#A5B9AE" font-family="IBM Plex Sans, sans-serif" font-size="22">
+    Byte-accurate Starknet settlement planner for Zcash L1
+  </text>
+  <g transform="translate(100,360)" font-family="IBM Plex Mono, monospace" font-size="28" fill="#E6F5EC">
+    <text y="0">Avg block load: &lt;0.2%</text>
+    <text y="50" fill="#00FF88">Peak lane share: &lt;50%</text>
+  </g>
+  <circle cx="920" cy="315" r="140" stroke="url(#grad)" stroke-width="34" fill="none" filter="url(#glow)"/>
+  <path d="M820 380L880 250L950 310L1020 220" stroke="#E6F5EC" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="100" y="460" fill="#FFD166" font-family="IBM Plex Mono, monospace" font-size="24">footprint.ztarknet.cash</text>
+</svg>
