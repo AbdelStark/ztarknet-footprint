@@ -1,5 +1,5 @@
-import { SimulationTotals } from '../calc/model';
-import { GlobalSettings } from '../types';
+import type { SimulationTotals } from '../calc/model';
+import type { GlobalSettings } from '../types';
 import { formatBytes, formatPercent, formatNumber } from '../calc/units';
 
 interface MetricsStripProps {
