@@ -9,7 +9,6 @@ export function LaneScheduler({ lane }: LaneSchedulerProps) {
   if (!lane) {
     return (
       <div>
-        <div className="panel-title">Policy Lane</div>
         <p style={{ color: 'var(--muted)', fontFamily: 'var(--font-sans)' }}>
           Lane is disabled — proofs can land in a single block if needed.
         </p>
@@ -23,11 +22,10 @@ export function LaneScheduler({ lane }: LaneSchedulerProps) {
 
   return (
     <div>
-      <div className="panel-title">Policy Lane ({formatPercent(lane.pct, 1)})</div>
       <p style={{ color: 'var(--muted)', fontFamily: 'var(--font-sans)' }}>
-        Lane admits {formatBytesShort(lane.bytesPerBlock)} per block, requiring{' '}
-        <strong>{lane.blocksToClear}</strong> blocks (~
-        {formatDuration(lane.durationSeconds)}) to clear one round of proofs.
+        Lane at {formatPercent(lane.pct, 1)} admits {formatBytesShort(lane.bytesPerBlock)} per block.
+        Clearing one round needs <strong>{lane.blocksToClear}</strong> block(s) (~
+        {formatDuration(lane.durationSeconds)}).
       </p>
       <div className="lane-strip">
         {displayBlocks.map((block) => (

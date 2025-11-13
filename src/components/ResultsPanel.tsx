@@ -55,16 +55,63 @@ export function ResultsPanel({
 
   return (
     <div className="results-grid">
-      <KpiGrid metrics={metrics} />
-      <BlockBar
-        usedBytes={totals.peakBytesPerBlock}
-        blockSizeBytes={global.blockSizeBytes}
-        units={global.units}
-      />
-      <AverageBars perL2={results.perL2} totals={totals} units={global.units} />
-      <WindowGauges windows={totals.windows} units={global.units} />
-      <LaneScheduler lane={totals.lane} />
-      <MarkdownExporter snippet={markdown} onCopy={onCopyMarkdown} />
+      <section className="result-card">
+        <div className="section-heading">
+          <h3>Network Snapshot</h3>
+          <span>Aggregated across {results.perL2.length} rollup(s)</span>
+        </div>
+        <KpiGrid metrics={metrics} />
+      </section>
+
+      <section className="result-card dual">
+        <div>
+          <div className="section-heading">
+            <h3>Peak block</h3>
+            <span>Worst-case if all proofs land together</span>
+          </div>
+          <BlockBar
+            usedBytes={totals.peakBytesPerBlock}
+            blockSizeBytes={global.blockSizeBytes}
+            units={global.units}
+          />
+        </div>
+        <div>
+          <div className="section-heading">
+            <h3>Average footprint</h3>
+            <span>Per block over settlement window</span>
+          </div>
+          <AverageBars
+            perL2={results.perL2}
+            totals={totals}
+            units={global.units}
+          />
+        </div>
+      </section>
+
+      <section className="result-card">
+        <div className="section-heading">
+          <h3>Supply windows</h3>
+          <span>Compare demand vs Zcash L1 supply</span>
+        </div>
+        <WindowGauges windows={totals.windows} units={global.units} />
+      </section>
+
+      <section className="result-card dual">
+        <div>
+          <div className="section-heading">
+            <h3>Lane scheduler</h3>
+            <span>Blocks to clear proofs under policy lane</span>
+          </div>
+          <LaneScheduler lane={totals.lane} />
+        </div>
+        <div>
+          <div className="section-heading">
+            <h3>Share-ready markdown</h3>
+            <span>Copy/paste to forums & docs</span>
+          </div>
+          <MarkdownExporter snippet={markdown} onCopy={onCopyMarkdown} />
+        </div>
+      </section>
     </div>
   );
 }

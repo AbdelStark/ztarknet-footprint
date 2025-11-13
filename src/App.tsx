@@ -8,6 +8,7 @@ import { InputsPanel } from './components/InputsPanel';
 import { ResultsPanel } from './components/ResultsPanel';
 import { ShareControls } from './components/ShareControls';
 import { PresetsBar } from './components/PresetsBar';
+import { MetricsStrip } from './components/MetricsStrip';
 
 function App() {
   const global = useSimulationStore((state) => state.global);
@@ -102,6 +103,7 @@ function App() {
             onExportPng={handleExportPng}
           />
         </div>
+        <MetricsStrip totals={results.totals} global={global} />
         <div className="panel-title" style={{ marginTop: 20 }}>
           Presets
         </div>

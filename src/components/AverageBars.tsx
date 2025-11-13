@@ -11,9 +11,6 @@ interface AverageBarsProps {
 export function AverageBars({ perL2, totals, units }: AverageBarsProps) {
   return (
     <div>
-      <div className="panel-title" style={{ marginBottom: 10 }}>
-        Average bytes per block
-      </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <BarRow
           label="Aggregate"

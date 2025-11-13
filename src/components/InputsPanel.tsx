@@ -23,6 +23,10 @@ export function InputsPanel({
 }: InputsPanelProps) {
   return (
     <section className="surface">
+      <div className="section-heading">
+        <h3>Scenario inputs</h3>
+        <span>All calculations stay client-side</span>
+      </div>
       <div className="panel-title">Global Settings</div>
       <GlobalInputs global={global} onChange={setGlobal} onUnits={setUnits} />
 

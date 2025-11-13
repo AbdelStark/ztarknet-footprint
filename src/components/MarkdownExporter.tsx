@@ -9,7 +9,6 @@ export function MarkdownExporter({
 }: MarkdownExporterProps) {
   return (
     <div>
-      <div className="panel-title">Markdown snippet</div>
       <div className="markdown-box">
         <pre style={{ margin: 0, whiteSpace: 'pre-wrap' }}>{snippet}</pre>
       </div>

@@ -25,10 +25,7 @@ export function BlockBar({
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <span className="panel-title" style={{ marginBottom: 10 }}>
-          Block Load
-        </span>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
         <span style={{ fontFamily: 'var(--font-sans)', color: 'var(--muted)' }}>
           {formatBytes(usedBytes, units, 2)} ({formatPercent(sharePct)})
         </span>
